@@ -4,19 +4,24 @@ var App = {
 
 	init: function(container) {
 		this.container = container;
-		Loader.init();
 		this.initialLoad();
 	},
 
 	initialLoad: function() {
-		Loader.load([
-			{id: 'homepage', src: 'data/homepage.html'}
-		], this.loadCompleted.bind(this)); // Binding allows to keep the App scope on callback
+		var homepage = new Loader([
+			{id: 'homepage', src: 'data/homepage.html'},
+			{id: 'about', src: 'data/about.html'}
+		], this.loadCompleted.bind(this));
+
+		var test = new Loader([
+			{id: 'test', src: 'data/test.html'}
+		], this.test.bind(this));
 	},
 
-	loadCompleted: function() {
-		this.container.innerHTML = Loader.getContentById('homepage');
+	loadCompleted: function(results) {
+		this.container.innerHTML = results['homepage'];
 		this.initialTransitionIn();
+		console.log('test 1!');
 	},
 
 	initialTransitionIn: function() {
@@ -25,6 +30,10 @@ var App = {
 
 	dispose: function() {
 		this.container.innerHTML = '';
+	},
+
+	test: function() {
+		console.log('test 2!');
 	}
 
 };
