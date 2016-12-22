@@ -16,7 +16,7 @@ var vendor = [
 ];
 
 var scripts = [
-    'src/js/loader.js',
+    'src/js/Loader.js',
     'src/js/app.js',
 	'src/js/index.js'
 ];
